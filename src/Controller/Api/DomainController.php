@@ -6,6 +6,7 @@ use App\Dto\DomainRequestPayload;
 use App\Entity\Domain;
 use App\Repository\DomainRepository;
 use App\ValueResolver\DomainValueResolver;
+use OpenAI;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +24,23 @@ class DomainController extends AbstractController
         private DomainRepository $domainRepository,
         private ObjectMapperInterface $objectMapper
     ) {}
+
+    #[Route('/test', name: "test", methods: ['GET'])]
+    public function test(): JsonResponse
+    {
+        $client = OpenAI::client($_ENV['OPENAI_API_KEY']);
+
+        $response = $client->responses()->create([
+            'model' => 'gpt-4o',
+            'input' => 'Hello!',
+        ]);
+
+        return $this->json(
+            data: $response->outputText,
+            status: Response::HTTP_OK,
+            context: ['groups' => self::SERIALIZATION_GROUPS]
+        );
+    }
 
     #[Route('', name: "browse", methods: ['GET'])]
     public function browse(): JsonResponse
