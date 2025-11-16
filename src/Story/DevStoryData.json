@@ -1,0 +1,404 @@
+{
+    "domains": [
+        {
+            "label": "Santé",
+            "branches": [
+                {
+                    "label": "Activité physique",
+                    "skills": [
+                        {
+                            "label": "Endurance",
+                            "objectives": [
+                                {
+                                    "label": "Courir 20 minutes",
+                                    "difficulty": 5,
+                                    "duration": 14
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Renforcement musculaire",
+                            "objectives": [
+                                {
+                                    "label": "Faire une séance complète",
+                                    "difficulty": 4,
+                                    "duration": 10
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Habitudes de vie",
+                    "skills": [
+                        {
+                            "label": "Sommeil réparateur",
+                            "objectives": [
+                                {
+                                    "label": "Dormir 7h par nuit",
+                                    "difficulty": 3,
+                                    "duration": 14
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Hydratation",
+                            "objectives": [
+                                {
+                                    "label": "Boire 1,5L d'eau",
+                                    "difficulty": 2,
+                                    "duration": 10
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Gestion du stress",
+                    "skills": [
+                        {
+                            "label": "Respiration consciente",
+                            "objectives": [
+                                {
+                                    "label": "Faire 5 minutes de cohérence cardiaque",
+                                    "difficulty": 2,
+                                    "duration": 7
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Relaxation musculaire",
+                            "objectives": [
+                                {
+                                    "label": "Pratiquer une séance de 10 minutes",
+                                    "difficulty": 3,
+                                    "duration": 7
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Créativité",
+            "branches": [
+                {
+                    "label": "Écriture",
+                    "skills": [
+                        {
+                            "label": "Écrire un livre",
+                            "objectives": [
+                                {
+                                    "label": "Rédiger 10 minutes",
+                                    "difficulty": 4,
+                                    "duration": 10
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Style narratif",
+                            "objectives": [
+                                {
+                                    "label": "Analyser un texte",
+                                    "difficulty": 3,
+                                    "duration": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Dessin",
+                    "skills": [
+                        {
+                            "label": "Bases du dessin",
+                            "objectives": [
+                                {
+                                    "label": "Dessiner 3 formes simples",
+                                    "difficulty": 2,
+                                    "duration": 5
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Couleurs et ombres",
+                            "objectives": [
+                                {
+                                    "label": "Colorier un objet",
+                                    "difficulty": 3,
+                                    "duration": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Musique",
+                    "skills": [
+                        {
+                            "label": "Instrument",
+                            "objectives": [
+                                {
+                                    "label": "Pratiquer 10 minutes",
+                                    "difficulty": 4,
+                                    "duration": 14
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Théorie musicale",
+                            "objectives": [
+                                {
+                                    "label": "Lire une gamme",
+                                    "difficulty": 3,
+                                    "duration": 7
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Productivité",
+            "branches": [
+                {
+                    "label": "Organisation personnelle",
+                    "skills": [
+                        {
+                            "label": "Planification",
+                            "objectives": [
+                                {
+                                    "label": "Planifier la journée",
+                                    "difficulty": 2,
+                                    "duration": 3
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Priorisation",
+                            "objectives": [
+                                {
+                                    "label": "Classer 3 tâches",
+                                    "difficulty": 2,
+                                    "duration": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Gestion du temps",
+                    "skills": [
+                        {
+                            "label": "Pomodoro",
+                            "objectives": [
+                                {
+                                    "label": "Faire un cycle de 25 minutes",
+                                    "difficulty": 4,
+                                    "duration": 5
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Batching",
+                            "objectives": [
+                                {
+                                    "label": "Regrouper 3 tâches similaires",
+                                    "difficulty": 3,
+                                    "duration": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Minimalisme digital",
+                    "skills": [
+                        {
+                            "label": "Inbox zéro",
+                            "objectives": [
+                                {
+                                    "label": "Trier 10 emails",
+                                    "difficulty": 3,
+                                    "duration": 3
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Temps d’écran",
+                            "objectives": [
+                                {
+                                    "label": "Réduire de 30 minutes",
+                                    "difficulty": 4,
+                                    "duration": 7
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Connaissances",
+            "branches": [
+                {
+                    "label": "Culture générale",
+                    "skills": [
+                        {
+                            "label": "Histoire",
+                            "objectives": [
+                                {
+                                    "label": "Lire un article",
+                                    "difficulty": 2,
+                                    "duration": 5
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Sciences",
+                            "objectives": [
+                                {
+                                    "label": "Regarder une vidéo éducative",
+                                    "difficulty": 1,
+                                    "duration": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Langues",
+                    "skills": [
+                        {
+                            "label": "Anglais",
+                            "objectives": [
+                                {
+                                    "label": "Apprendre 5 mots",
+                                    "difficulty": 3,
+                                    "duration": 7
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Espagnol",
+                            "objectives": [
+                                {
+                                    "label": "Lire un court texte",
+                                    "difficulty": 3,
+                                    "duration": 7
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Compétences numériques",
+                    "skills": [
+                        {
+                            "label": "Bureautique",
+                            "objectives": [
+                                {
+                                    "label": "Faire un doc simple",
+                                    "difficulty": 2,
+                                    "duration": 5
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Navigation web",
+                            "objectives": [
+                                {
+                                    "label": "Rechercher une information",
+                                    "difficulty": 1,
+                                    "duration": 3
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Développement personnel",
+            "branches": [
+                {
+                    "label": "Confiance en soi",
+                    "skills": [
+                        {
+                            "label": "Affirmation",
+                            "objectives": [
+                                {
+                                    "label": "Dire non une fois",
+                                    "difficulty": 5,
+                                    "duration": 3
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Expression orale",
+                            "objectives": [
+                                {
+                                    "label": "Se présenter en 1 minute",
+                                    "difficulty": 6,
+                                    "duration": 7
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Gestion émotionnelle",
+                    "skills": [
+                        {
+                            "label": "Journal émotionnel",
+                            "objectives": [
+                                {
+                                    "label": "Noter 3 ressentis",
+                                    "difficulty": 3,
+                                    "duration": 7
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Observation",
+                            "objectives": [
+                                {
+                                    "label": "Décrire une émotion",
+                                    "difficulty": 4,
+                                    "duration": 7
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "label": "Habitudes positives",
+                    "skills": [
+                        {
+                            "label": "Lecture quotidienne",
+                            "objectives": [
+                                {
+                                    "label": "Lire 5 minutes",
+                                    "difficulty": 2,
+                                    "duration": 10
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Routine matinale",
+                            "objectives": [
+                                {
+                                    "label": "Faire un rituel simple",
+                                    "difficulty": 3,
+                                    "duration": 10
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

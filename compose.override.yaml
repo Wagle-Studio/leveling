@@ -1,9 +1,18 @@
-
 services:
+###> symfony/application ###
+  app:
+    ports:
+      - "9000:9000"
+
+  nginx:
+    ports:
+      - "8000:80"
+###< symfony/application ###
+
 ###> doctrine/doctrine-bundle ###
   database:
     ports:
-      - "5432"
+      - "5432:5432"
 ###< doctrine/doctrine-bundle ###
 
 ###> symfony/mailer ###
@@ -16,3 +25,14 @@ services:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
 ###< symfony/mailer ###
+
+###> adminer ###
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+###< adminer ###
+
