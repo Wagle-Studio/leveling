@@ -2,17 +2,13 @@
 
 namespace App\Controller\Api;
 
-use App\Dto\ObjectiveRequestPayload;
-use App\Entity\Objective;
-use App\Entity\Skill;
+use App\Dto\Request\ObjectiveRequestPayload as Payload;
+use App\Entity\{Objective, Skill};
 use App\Repository\ObjectiveRepository;
-use App\ValueResolver\ObjectiveValueResolver;
-use App\ValueResolver\SkillValueResolver;
+use App\ValueResolver\{ObjectiveValueResolver as ObjectiveVR, SkillValueResolver as SkillVR};
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
-use Symfony\Component\HttpKernel\Attribute\ValueResolver;
+use Symfony\Component\HttpFoundation\{JsonResponse, Response};
+use Symfony\Component\HttpKernel\Attribute\{MapRequestPayload as Map, ValueResolver as VR};
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,80 +24,58 @@ class ObjectiveController extends AbstractController
     ) {}
 
     #[Route('', name: "browse", methods: ['GET'])]
-    public function browse(#[ValueResolver(SkillValueResolver::class)] Skill $skill): JsonResponse
+    public function browse(#[VR(SkillVR::class)] Skill $skill): JsonResponse
     {
-        $objectives = $skill->getObjectives();
-
-        return $this->json(
-            data: $objectives,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($skill->getObjectives(), Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{objective_id}', name: "read", methods: ['GET'])]
-    public function read(
-        #[ValueResolver(SkillValueResolver::class)] Skill $skill,
-        #[ValueResolver(ObjectiveValueResolver::class)] Objective $objective
-    ): JsonResponse {
+    public function read(#[VR(SkillVR::class)] Skill $skill, #[VR(ObjectiveVR::class)] Objective $objective): JsonResponse
+    {
         if ($objective->getSkill() !== $skill) {
-            throw new NotFoundHttpException('L\'objectif n\'appartient pas à la compétence spécifiée.');
+            throw new NotFoundHttpException(
+                sprintf('["%s"] Objective does not belong to the specified Skill.', self::class)
+            );
         }
 
-        return $this->json(
-            data: $objective,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($objective, Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{objective_id}', name: "edit", methods: ['PATCH', 'PUT'])]
-    public function edit(
-        #[ValueResolver(SkillValueResolver::class)] Skill $skill,
-        #[ValueResolver(ObjectiveValueResolver::class)] Objective $objective,
-        #[MapRequestPayload] ObjectiveRequestPayload $request
-    ): JsonResponse {
+    public function edit(#[VR(SkillVR::class)] Skill $skill, #[VR(ObjectiveVR::class)] Objective $objective, #[Map] Payload $request): JsonResponse
+    {
         if ($objective->getSkill() !== $skill) {
-            throw new NotFoundHttpException('L\'objectif n\'appartient pas à la compétence spécifiée.');
+            throw new NotFoundHttpException(
+                sprintf('["%s"] Objective does not belong to the specified Skill.', self::class)
+            );
         }
 
-        $objective = $this->objectMapper->map($request, $objective);
-        $this->objectiveRepository->save($objective, true);
+        $this->objectiveRepository->save($this->objectMapper->map($request, $objective), true);
 
-        return $this->json(
-            data: $objective,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($objective, Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('', name: "add", methods: ['POST'])]
-    public function add(
-        #[ValueResolver(SkillValueResolver::class)] Skill $skill,
-        #[MapRequestPayload] ObjectiveRequestPayload $request
-    ): JsonResponse {
+    public function add(#[VR(SkillVR::class)] Skill $skill, #[Map] Payload $request): JsonResponse
+    {
         $objective = $this->objectMapper->map($request, Objective::class);
         $objective->setSkill($skill);
         $this->objectiveRepository->save($objective, true);
 
-        return $this->json(
-            data: $objective,
-            status: Response::HTTP_CREATED,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($objective, Response::HTTP_CREATED, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{objective_id}', name: "delete", methods: ['DELETE'])]
-    public function delete(
-        #[ValueResolver(SkillValueResolver::class)] Skill $skill,
-        #[ValueResolver(ObjectiveValueResolver::class)] Objective $objective,
-    ): JsonResponse {
+    public function delete(#[VR(SkillVR::class)] Skill $skill, #[VR(ObjectiveVR::class)] Objective $objective): JsonResponse
+    {
         if ($objective->getSkill() !== $skill) {
-            throw new NotFoundHttpException('L\'objectif n\'appartient pas à la compétence spécifiée.');
+            throw new NotFoundHttpException(
+                sprintf('["%s"] Objective does not belong to the specified Skill.', self::class)
+            );
         }
 
         $this->objectiveRepository->remove($objective, true);
 
-        return $this->json(data: null, status: Response::HTTP_NO_CONTENT);
+        return $this->json(null, Response::HTTP_NO_CONTENT);
     }
 }

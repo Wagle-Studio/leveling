@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\Request;
 
-use App\Entity\Skill;
+use App\Entity\Branch;
 use Symfony\Component\ObjectMapper\Attribute\Map;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[Map(target: Skill::class)]
-final readonly class SkillRequestPayload
+#[Map(target: Branch::class)]
+final readonly class BranchRequestPayload
 {
     public function __construct(
         #[Assert\NotBlank(message: 'Le label ne peut pas être vide.')]

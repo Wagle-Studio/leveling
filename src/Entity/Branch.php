@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Serializer\Attribute\Ignore;
 
 #[ORM\Entity(repositoryClass: BranchRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -23,10 +24,18 @@ class Branch
     #[Groups(['branch.read'])]
     private ?int $id = null;
 
+    /**
+     * @var Collection<int, Domain>
+     */
     #[ORM\ManyToMany(targetEntity: Domain::class, mappedBy: 'branches')]
+    #[Ignore]
     private Collection $domains;
 
+    /**
+     * @var Collection<int, Skill>
+     */
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'branches')]
+    #[Ignore]
     private Collection $skills;
 
     public function __construct()
@@ -40,6 +49,9 @@ class Branch
         return $this->id;
     }
 
+    /**
+     * @return Collection<int, Domain>
+     */
     public function getDomains(): Collection
     {
         return $this->domains;
@@ -64,6 +76,9 @@ class Branch
         return $this;
     }
 
+    /**
+     * @return Collection<int, Skill>
+     */
     public function getSkills(): Collection
     {
         return $this->skills;

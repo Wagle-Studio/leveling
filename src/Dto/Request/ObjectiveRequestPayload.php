@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\Request;
 
 use App\Entity\Objective;
 use Symfony\Component\ObjectMapper\Attribute\Map;
@@ -18,14 +18,6 @@ final readonly class ObjectiveRequestPayload
             maxMessage: 'Le label ne peut pas faire plus de {{ limit }} caractères.'
         )]
         public string $label,
-
-        #[Assert\NotBlank(message: 'La difficulté ne peut pas être vide.')]
-        #[Assert\Range(
-            notInRangeMessage: 'La difficulté doit être comprise entre {{ min }} et {{ max }}.',
-            min: 1,
-            max: 10
-        )]
-        public int $difficulty,
 
         #[Assert\NotBlank(message: 'La durée ne peut pas être vide.')]
         #[Assert\Range(

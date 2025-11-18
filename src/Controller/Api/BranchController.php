@@ -2,17 +2,13 @@
 
 namespace App\Controller\Api;
 
-use App\Dto\BranchRequestPayload;
-use App\Entity\Branch;
-use App\Entity\Domain;
+use App\Dto\Request\BranchRequestPayload as Payload;
+use App\Entity\{Branch, Domain};
 use App\Repository\BranchRepository;
-use App\ValueResolver\BranchValueResolver;
-use App\ValueResolver\DomainValueResolver;
+use App\ValueResolver\{BranchValueResolver as BranchVR, DomainValueResolver as DomainVR};
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
-use Symfony\Component\HttpKernel\Attribute\ValueResolver;
+use Symfony\Component\HttpFoundation\{JsonResponse, Response};
+use Symfony\Component\HttpKernel\Attribute\{MapRequestPayload as Map, ValueResolver as VR};
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,80 +24,58 @@ class BranchController extends AbstractController
     ) {}
 
     #[Route('', name: "browse", methods: ['GET'])]
-    public function browse(#[ValueResolver(DomainValueResolver::class)] Domain $domain): JsonResponse
+    public function browse(#[VR(DomainVR::class)] Domain $domain): JsonResponse
     {
-        $branches = $domain->getBranches();
-
-        return $this->json(
-            data: $branches,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($domain->getBranches(), Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{branch_id}', name: "read", methods: ['GET'])]
-    public function read(
-        #[ValueResolver(DomainValueResolver::class)] Domain $domain,
-        #[ValueResolver(BranchValueResolver::class)] Branch $branch
-    ): JsonResponse {
+    public function read(#[VR(DomainVR::class)] Domain $domain, #[VR(BranchVR::class)] Branch $branch): JsonResponse
+    {
         if (!$branch->getDomains()->contains($domain)) {
-            throw new NotFoundHttpException('La branche n\'appartient pas au domaine spécifié.');
+            throw new NotFoundHttpException(
+                sprintf('["%s"] Branch does not belong to the specified Domain.', self::class)
+            );
         }
 
-        return $this->json(
-            data: $branch,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($branch, Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{branch_id}', name: "edit", methods: ['PATCH', 'PUT'])]
-    public function edit(
-        #[ValueResolver(DomainValueResolver::class)] Domain $domain,
-        #[ValueResolver(BranchValueResolver::class)] Branch $branch,
-        #[MapRequestPayload] BranchRequestPayload $request
-    ): JsonResponse {
+    public function edit(#[VR(DomainVR::class)] Domain $domain, #[VR(BranchVR::class)] Branch $branch, #[Map] Payload $request): JsonResponse
+    {
         if (!$branch->getDomains()->contains($domain)) {
-            throw new NotFoundHttpException('La branche n\'appartient pas au domaine spécifié.');
+            throw new NotFoundHttpException(
+                sprintf('["%s"] Branch does not belong to the specified Domain.', self::class)
+            );
         }
 
-        $branch = $this->objectMapper->map($request, $branch);
-        $this->branchRepository->save($branch, true);
+        $this->branchRepository->save($this->objectMapper->map($request, $branch), true);
 
-        return $this->json(
-            data: $branch,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($branch, Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('', name: "add", methods: ['POST'])]
-    public function add(
-        #[ValueResolver(DomainValueResolver::class)] Domain $domain,
-        #[MapRequestPayload] BranchRequestPayload $request
-    ): JsonResponse {
+    public function add(#[VR(DomainVR::class)] Domain $domain, #[Map] Payload $request): JsonResponse
+    {
         $branch = $this->objectMapper->map($request, Branch::class);
         $branch->addDomain($domain);
         $this->branchRepository->save($branch, true);
 
-        return $this->json(
-            data: $branch,
-            status: Response::HTTP_CREATED,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($branch, Response::HTTP_CREATED, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{branch_id}', name: "delete", methods: ['DELETE'])]
-    public function delete(
-        #[ValueResolver(DomainValueResolver::class)] Domain $domain,
-        #[ValueResolver(BranchValueResolver::class)] Branch $branch,
-    ): JsonResponse {
+    public function delete(#[VR(DomainVR::class)] Domain $domain, #[VR(BranchVR::class)] Branch $branch): JsonResponse
+    {
         if (!$branch->getDomains()->contains($domain)) {
-            throw new NotFoundHttpException('La branche n\'appartient pas au domaine spécifié.');
+            throw new NotFoundHttpException(
+                sprintf('["%s"] Branch does not belong to the specified Domain.', self::class)
+            );
         }
 
         $this->branchRepository->remove($branch, true);
 
-        return $this->json(data: null, status: Response::HTTP_NO_CONTENT);
+        return $this->json(null, Response::HTTP_NO_CONTENT);
     }
 }

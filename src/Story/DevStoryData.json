@@ -11,8 +11,21 @@
                             "objectives": [
                                 {
                                     "label": "Courir 20 minutes",
-                                    "difficulty": 5,
-                                    "duration": 14
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Courir 10 minutes à allure facile",
+                                            "instruction": "Faire 3 minutes de marche rapide pour s’échauffer, puis courir 10 minutes à allure confortable où vous pouvez parler, et terminer par 2 minutes de marche lente."
+                                        },
+                                        {
+                                            "label": "Courir 15 minutes en continu",
+                                            "instruction": "Faire 5 minutes d’échauffement (marche + mobilisation des chevilles et genoux), courir 15 minutes en continu à allure régulière, puis 5 minutes de marche de récupération."
+                                        },
+                                        {
+                                            "label": "Courir 20 minutes (objectif final)",
+                                            "instruction": "Faire 5 minutes d’échauffement, courir 20 minutes en continu à allure d’endurance, puis terminer par 5 minutes de marche et quelques étirements légers (mollets, cuisses)."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -21,8 +34,21 @@
                             "objectives": [
                                 {
                                     "label": "Faire une séance complète",
-                                    "difficulty": 4,
-                                    "duration": 10
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Découverte des mouvements",
+                                            "instruction": "Faire 2 séries de 10 squats, 2 séries de 8 pompes (sur les genoux si besoin) et 2 séries de 20 secondes de gainage, avec 1 minute de repos entre chaque série."
+                                        },
+                                        {
+                                            "label": "Séance structurée corps entier",
+                                            "instruction": "Enchaîner 3 séries de 12 squats, 3 séries de 10 pompes et 3 séries de 25 secondes de gainage, avec 45 à 60 secondes de repos entre les séries."
+                                        },
+                                        {
+                                            "label": "Séance complète de référence",
+                                            "instruction": "Réaliser 3 séries de 15 squats, 3 séries de 12 pompes, 3 séries de 30 secondes de gainage et 3 séries de 12 fentes (6 par jambe), avec 60 à 90 secondes de repos entre les blocs."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -36,8 +62,21 @@
                             "objectives": [
                                 {
                                     "label": "Dormir 7h par nuit",
-                                    "difficulty": 3,
-                                    "duration": 14
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Fixer une heure de coucher",
+                                            "instruction": "Choisir une heure de coucher réaliste pour obtenir 7 heures de sommeil, la noter et couper les écrans 20 minutes avant cette heure."
+                                        },
+                                        {
+                                            "label": "Installer une routine du soir",
+                                            "instruction": "30 minutes avant le coucher, répéter un petit rituel calme (lecture, musique douce, étirements légers) et éviter les notifications et tâches stimulantes."
+                                        },
+                                        {
+                                            "label": "Bilan de 2 semaines",
+                                            "instruction": "Observer l’heure moyenne de coucher et le temps de sommeil, noter 3 bénéfices ressentis (énergie, humeur, concentration) et ajuster l’heure si besoin."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -46,8 +85,21 @@
                             "objectives": [
                                 {
                                     "label": "Boire 1,5L d'eau",
-                                    "difficulty": 2,
-                                    "duration": 10
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Ajouter une gourde",
+                                            "instruction": "Remplir une gourde de 500 ml et la garder à portée de main, viser à la finir 3 fois dans la journée pour atteindre 1,5L."
+                                        },
+                                        {
+                                            "label": "Structurer les moments de boisson",
+                                            "instruction": "Découper la journée en 3 blocs (matin, après-midi, soir) et boire au moins 500 ml dans chaque bloc, en associant la prise d’eau à des routines (après repas, avant travail)."
+                                        },
+                                        {
+                                            "label": "Hydratation automatique",
+                                            "instruction": "Mettre un rappel léger (alarme ou app) toutes les 2 à 3 heures pour boire quelques gorgées et vérifier en fin de journée que la quantité de 1,5L est atteinte."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -61,8 +113,21 @@
                             "objectives": [
                                 {
                                     "label": "Faire 5 minutes de cohérence cardiaque",
-                                    "difficulty": 2,
-                                    "duration": 7
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Découvrir la cohérence cardiaque",
+                                            "instruction": "S’asseoir confortablement, inspirer 5 secondes et expirer 5 secondes pendant 3 minutes, en se concentrant uniquement sur la respiration."
+                                        },
+                                        {
+                                            "label": "Pratiquer 5 minutes",
+                                            "instruction": "Faire une séance complète de 5 minutes de respiration 5–5 (ou 4–6 si plus confortable), dans un endroit calme, en fermant les yeux si possible."
+                                        },
+                                        {
+                                            "label": "Intégrer au quotidien",
+                                            "instruction": "Choisir un moment fixe (matin, pause midi ou soir) et pratiquer 5 minutes de cohérence cardiaque, en observant les effets sur la tension et l’humeur."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -71,8 +136,21 @@
                             "objectives": [
                                 {
                                     "label": "Pratiquer une séance de 10 minutes",
-                                    "difficulty": 3,
-                                    "duration": 7
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Relaxer le haut du corps",
+                                            "instruction": "Allongé ou assis, contracter doucement les muscles des épaules et des bras pendant 5 secondes puis relâcher 10 secondes, répéter 5 fois."
+                                        },
+                                        {
+                                            "label": "Séance corps entier",
+                                            "instruction": "Contracter puis relâcher successivement les muscles des pieds, jambes, ventre, épaules et visage, en enchaînant sur 10 minutes de pratique calme."
+                                        },
+                                        {
+                                            "label": "Séance guidée complète",
+                                            "instruction": "Faire une séance de 10 minutes de relaxation musculaire progressive (guidée ou auto-guidée), en portant attention à la sensation de détente dans chaque zone."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -91,8 +169,21 @@
                             "objectives": [
                                 {
                                     "label": "Rédiger 10 minutes",
-                                    "difficulty": 4,
-                                    "duration": 10
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Écrire sans se censurer",
+                                            "instruction": "Lancer un timer de 10 minutes et écrire en continu sans se relire ni corriger, en acceptant les phrases imparfaites."
+                                        },
+                                        {
+                                            "label": "Continuer une scène",
+                                            "instruction": "Relire rapidement les 5 dernières lignes écrites, puis écrire 10 minutes supplémentaires en prolongeant la scène sans chercher la perfection."
+                                        },
+                                        {
+                                            "label": "Consolider l’habitude",
+                                            "instruction": "Choisir un créneau fixe, couper les distractions et écrire 10 minutes d’une traite, puis noter en une phrase ce qui a avancé dans l’histoire."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -101,8 +192,21 @@
                             "objectives": [
                                 {
                                     "label": "Analyser un texte",
-                                    "difficulty": 3,
-                                    "duration": 5
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Observer le rythme",
+                                            "instruction": "Choisir un court extrait de roman (5 à 10 lignes) et repérer les phrases courtes et longues, en notant comment elles influencent le rythme."
+                                        },
+                                        {
+                                            "label": "Repérer la voix du narrateur",
+                                            "instruction": "Relire un passage en relevant les marqueurs de point de vue (je, il, tu) et la manière dont le narrateur se positionne par rapport aux personnages."
+                                        },
+                                        {
+                                            "label": "Imiter le style",
+                                            "instruction": "Réécrire 3 à 5 phrases d’une situation de votre choix en essayant de reproduire le rythme et le ton du texte analysé."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -116,8 +220,21 @@
                             "objectives": [
                                 {
                                     "label": "Dessiner 3 formes simples",
-                                    "difficulty": 2,
-                                    "duration": 5
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Tracer des cercles, carrés et triangles",
+                                            "instruction": "Remplir une page de petits cercles, carrés et triangles à main levée, sans chercher la perfection, pour se familiariser avec le geste."
+                                        },
+                                        {
+                                            "label": "Combiner les formes",
+                                            "instruction": "Dessiner un objet simple (tasse, maison, robot) en le construisant à partir de cercles, carrés et triangles."
+                                        },
+                                        {
+                                            "label": "Varier les tailles",
+                                            "instruction": "Dessiner les trois formes de base en différentes tailles, en cherchant à garder des contours nets et des proportions cohérentes."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -126,8 +243,21 @@
                             "objectives": [
                                 {
                                     "label": "Colorier un objet",
-                                    "difficulty": 3,
-                                    "duration": 5
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Observer la lumière",
+                                            "instruction": "Choisir un objet réel et observer d’où vient la lumière, repérer les zones les plus claires et les plus sombres sans encore les dessiner."
+                                        },
+                                        {
+                                            "label": "Placer les ombres",
+                                            "instruction": "Dessiner un objet simple et ajouter des zones d’ombre et de lumière avec un crayon ou un feutre, en conservant une seule source de lumière."
+                                        },
+                                        {
+                                            "label": "Colorier avec dégradé",
+                                            "instruction": "Colorier un objet en partant d’une couleur plus foncée vers une plus claire, en marquant les zones d’ombre et les zones de lumière."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -141,8 +271,21 @@
                             "objectives": [
                                 {
                                     "label": "Pratiquer 10 minutes",
-                                    "difficulty": 4,
-                                    "duration": 14
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Échauffement simple",
+                                            "instruction": "Pratiquer 10 minutes d’exercices de base (gammes, accords ou patterns simples) en se concentrant sur la position des mains et la relaxation."
+                                        },
+                                        {
+                                            "label": "Travailler un passage précis",
+                                            "instruction": "Choisir un court passage d’un morceau et le répéter pendant 10 minutes en commençant lentement puis en accélérant légèrement."
+                                        },
+                                        {
+                                            "label": "Jouer en continu 10 minutes",
+                                            "instruction": "Enchaîner plusieurs exercices ou morceaux simples pendant 10 minutes sans interruption, en gardant une attention sur la régularité du rythme."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -151,8 +294,21 @@
                             "objectives": [
                                 {
                                     "label": "Lire une gamme",
-                                    "difficulty": 3,
-                                    "duration": 7
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Comprendre la structure",
+                                            "instruction": "Choisir une gamme majeure (par exemple do majeur) et noter la suite des notes sur une ligne (do, ré, mi, fa, sol, la, si, do)."
+                                        },
+                                        {
+                                            "label": "Lire la gamme sur une partition ou un diagramme",
+                                            "instruction": "Observer où se placent les notes de la gamme sur une portée ou sur le manche/clavier de l’instrument utilisé."
+                                        },
+                                        {
+                                            "label": "Jouer ou chanter la gamme",
+                                            "instruction": "Monter et descendre la gamme lentement en jouant ou en chantant chaque note, en essayant de garder un rythme régulier."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -171,8 +327,21 @@
                             "objectives": [
                                 {
                                     "label": "Planifier la journée",
-                                    "difficulty": 2,
-                                    "duration": 3
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Lister les tâches importantes",
+                                            "instruction": "Écrire toutes les tâches que vous devez ou voulez accomplir aujourd’hui, sans ordre particulier."
+                                        },
+                                        {
+                                            "label": "Organiser dans un créneau horaire",
+                                            "instruction": "Répartir les tâches de la liste dans des créneaux approximatifs (matin, après-midi, soir) en tenant compte de votre énergie."
+                                        },
+                                        {
+                                            "label": "Ajuster en fin de journée",
+                                            "instruction": "En fin de journée, cocher ce qui a été fait, reporter ce qui reste et adapter le plan du lendemain en conséquence."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -181,8 +350,21 @@
                             "objectives": [
                                 {
                                     "label": "Classer 3 tâches",
-                                    "difficulty": 2,
-                                    "duration": 3
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Identifier 3 tâches clés",
+                                            "instruction": "Choisir 3 tâches qui ont le plus d’impact sur votre journée ou vos objectifs et les noter séparément."
+                                        },
+                                        {
+                                            "label": "Classer par importance",
+                                            "instruction": "Classer ces 3 tâches de la plus importante à la moins importante, puis commencer la journée par la première."
+                                        },
+                                        {
+                                            "label": "Tester un ordre différent si besoin",
+                                            "instruction": "Observer comment vous vous sentez après avoir fait la première tâche prioritaire et ajuster l’ordre des tâches pour le jour suivant."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -196,8 +378,21 @@
                             "objectives": [
                                 {
                                     "label": "Faire un cycle de 25 minutes",
-                                    "difficulty": 4,
-                                    "duration": 5
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Préparer une session",
+                                            "instruction": "Choisir une tâche claire, lancer un minuteur de 25 minutes et travailler sans distraction jusqu’à la fin du temps."
+                                        },
+                                        {
+                                            "label": "Enchaîner travail + pause",
+                                            "instruction": "Faire un cycle complet : 25 minutes de travail concentré puis 5 minutes de pause réelle (se lever, boire de l’eau, s’étirer)."
+                                        },
+                                        {
+                                            "label": "Observer l’efficacité",
+                                            "instruction": "Refaire un cycle de 25 minutes, puis noter ce qui a été accompli et si ce format de temps vous aide à mieux vous concentrer."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -206,8 +401,21 @@
                             "objectives": [
                                 {
                                     "label": "Regrouper 3 tâches similaires",
-                                    "difficulty": 3,
-                                    "duration": 5
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Regrouper les tâches par type",
+                                            "instruction": "Lister les tâches rapides similaires (mails, messages, petites réponses) et en sélectionner 3 à faire en une seule session."
+                                        },
+                                        {
+                                            "label": "Faire une session dédiée",
+                                            "instruction": "Bloquer un créneau de 20 à 30 minutes pour réaliser les 3 tâches regroupées sans passer à autre chose entre temps."
+                                        },
+                                        {
+                                            "label": "Répéter la méthode",
+                                            "instruction": "Refaire une session de batching avec 3 nouvelles tâches similaires et comparer avec une journée sans regroupement."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -221,8 +429,21 @@
                             "objectives": [
                                 {
                                     "label": "Trier 10 emails",
-                                    "difficulty": 3,
-                                    "duration": 3
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Trier 10 emails",
+                                            "instruction": "Ouvrir la boîte mail principale et traiter 10 emails en les archivant, supprimant ou classant dans des dossiers simples."
+                                        },
+                                        {
+                                            "label": "Créer 2 dossiers utiles",
+                                            "instruction": "Créer au moins 2 dossiers (par exemple « À traiter », « À archiver ») et y déplacer les emails correspondants."
+                                        },
+                                        {
+                                            "label": "Refaire un tri rapide",
+                                            "instruction": "Traiter à nouveau 10 emails en utilisant les dossiers créés, en limitant le temps passé à 10–15 minutes."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -231,8 +452,21 @@
                             "objectives": [
                                 {
                                     "label": "Réduire de 30 minutes",
-                                    "difficulty": 4,
-                                    "duration": 7
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Identifier un créneau à réduire",
+                                            "instruction": "Observer le temps passé sur une application ou un réseau et décider d’un créneau de 30 minutes à réduire ou supprimer."
+                                        },
+                                        {
+                                            "label": "Remplacer par une activité",
+                                            "instruction": "Pendant le créneau réduit, choisir une activité alternative simple (lecture, marche, conversation, dessin) et la pratiquer à la place de l’écran."
+                                        },
+                                        {
+                                            "label": "Vérifier le temps d’écran",
+                                            "instruction": "Consulter les statistiques de temps d’écran et vérifier si la moyenne a baissé d’environ 30 minutes par jour sur la semaine."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -251,8 +485,21 @@
                             "objectives": [
                                 {
                                     "label": "Lire un article",
-                                    "difficulty": 2,
-                                    "duration": 5
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Choisir un sujet",
+                                            "instruction": "Choisir un sujet historique qui vous intrigue (période, événement, personnage) et trouver un article court et fiable à ce propos."
+                                        },
+                                        {
+                                            "label": "Lire en prenant 3 notes",
+                                            "instruction": "Lire l’article et noter 3 faits ou idées qui vous ont marqué dans un carnet ou une note numérique."
+                                        },
+                                        {
+                                            "label": "Partager ou reformuler",
+                                            "instruction": "Raconter ce que vous avez appris à quelqu’un ou écrire un court résumé de quelques phrases à partir de vos notes."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -261,8 +508,21 @@
                             "objectives": [
                                 {
                                     "label": "Regarder une vidéo éducative",
-                                    "difficulty": 1,
-                                    "duration": 3
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Choisir une vidéo courte",
+                                            "instruction": "Sélectionner une vidéo de vulgarisation scientifique de 5 à 10 minutes sur un sujet qui vous intéresse."
+                                        },
+                                        {
+                                            "label": "Regarder activement",
+                                            "instruction": "Regarder la vidéo sans faire autre chose en parallèle et repérer au moins une idée clé ou une expérience décrite."
+                                        },
+                                        {
+                                            "label": "Noter l’idée clé",
+                                            "instruction": "Noter en une ou deux phrases ce que vous retenez le plus de la vidéo et pourquoi cela vous a marqué."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -276,8 +536,21 @@
                             "objectives": [
                                 {
                                     "label": "Apprendre 5 mots",
-                                    "difficulty": 3,
-                                    "duration": 7
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Choisir 5 mots utiles",
+                                            "instruction": "Choisir 5 mots anglais liés à un thème qui vous parle (travail, voyage, hobby) et les noter avec leur traduction."
+                                        },
+                                        {
+                                            "label": "Utiliser les mots dans des phrases",
+                                            "instruction": "Écrire ou dire à voix haute une phrase simple avec chacun des 5 mots pour les ancrer en contexte."
+                                        },
+                                        {
+                                            "label": "Révision rapide",
+                                            "instruction": "Relire les 5 mots et leurs phrases, puis essayer de les rappeler sans regarder, en les prononçant à voix haute."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -286,8 +559,21 @@
                             "objectives": [
                                 {
                                     "label": "Lire un court texte",
-                                    "difficulty": 3,
-                                    "duration": 7
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Choisir un texte simple",
+                                            "instruction": "Trouver un court texte en espagnol (dialogue, mini-article ou extrait) adapté à votre niveau, une dizaine de lignes."
+                                        },
+                                        {
+                                            "label": "Lire et repérer les mots connus",
+                                            "instruction": "Lire le texte et surligner les mots que vous comprenez déjà, sans chercher à tout traduire."
+                                        },
+                                        {
+                                            "label": "Relire avec compréhension globale",
+                                            "instruction": "Relire le texte en essayant de comprendre le sens général, puis noter 2 à 3 nouveaux mots intéressants avec leur traduction."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -301,8 +587,21 @@
                             "objectives": [
                                 {
                                     "label": "Faire un doc simple",
-                                    "difficulty": 2,
-                                    "duration": 5
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Créer un document",
+                                            "instruction": "Ouvrir un logiciel de traitement de texte, créer un nouveau document et lui donner un titre en haut de la page."
+                                        },
+                                        {
+                                            "label": "Mettre en forme du texte",
+                                            "instruction": "Ajouter un court paragraphe et lui appliquer des styles simples (titre, sous-titre, liste à puces)."
+                                        },
+                                        {
+                                            "label": "Sauvegarder et organiser",
+                                            "instruction": "Enregistrer le document dans un dossier dédié, avec un nom de fichier clair, et vérifier que vous le retrouvez facilement."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -311,8 +610,21 @@
                             "objectives": [
                                 {
                                     "label": "Rechercher une information",
-                                    "difficulty": 1,
-                                    "duration": 3
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Formuler une question",
+                                            "instruction": "Choisir une question simple (par exemple « météo de demain dans ma ville » ou « horaires d’ouverture d’une bibliothèque »)."
+                                        },
+                                        {
+                                            "label": "Faire une recherche ciblée",
+                                            "instruction": "Saisir la question dans un moteur de recherche et cliquer sur un site fiable (institution, grande plateforme connue)."
+                                        },
+                                        {
+                                            "label": "Vérifier la source",
+                                            "instruction": "Repérer qui publie l’information (site officiel, blog, forum) et vérifier qu’elle date de moins d’un an si c’est pertinent."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -331,8 +643,21 @@
                             "objectives": [
                                 {
                                     "label": "Dire non une fois",
-                                    "difficulty": 5,
-                                    "duration": 3
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Identifier une situation",
+                                            "instruction": "Repérer une situation récente où vous avez dit oui alors que vous auriez préféré dire non, et noter ce qui vous en a empêché."
+                                        },
+                                        {
+                                            "label": "Préparer une phrase de refus",
+                                            "instruction": "Écrire et répéter une phrase simple pour dire non poliment (par exemple « Je ne peux pas cette fois-ci, merci de ta compréhension »)."
+                                        },
+                                        {
+                                            "label": "Dire non dans une vraie situation",
+                                            "instruction": "Utiliser votre phrase dans une petite situation du quotidien (service, proposition, sollicitation) où le refus est sans grand risque."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -341,8 +666,21 @@
                             "objectives": [
                                 {
                                     "label": "Se présenter en 1 minute",
-                                    "difficulty": 6,
-                                    "duration": 7
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Écrire une mini-présentation",
+                                            "instruction": "Écrire quelques phrases pour vous présenter (qui vous êtes, ce que vous faites, ce que vous aimez) en visant une durée d’environ une minute."
+                                        },
+                                        {
+                                            "label": "S’entraîner à voix haute",
+                                            "instruction": "Répéter cette présentation à voix haute, seul ou devant un miroir, en essayant de parler clairement et sans se presser."
+                                        },
+                                        {
+                                            "label": "La faire devant quelqu’un",
+                                            "instruction": "Partager cette mini-présentation avec une personne de confiance (ami, proche) ou l’enregistrer en audio/vidéo pour vous réécouter."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -356,8 +694,21 @@
                             "objectives": [
                                 {
                                     "label": "Noter 3 ressentis",
-                                    "difficulty": 3,
-                                    "duration": 7
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Noter une émotion",
+                                            "instruction": "Le soir, écrire une émotion ressentie dans la journée (par exemple « colère », « joie », « fatigue ») et la situation associée."
+                                        },
+                                        {
+                                            "label": "Passer à 3 ressentis",
+                                            "instruction": "Écrire 3 ressentis différents vécus dans la journée, même s’ils paraissent petits ou insignifiants."
+                                        },
+                                        {
+                                            "label": "Observer un schéma",
+                                            "instruction": "Relire les émotions notées sur la semaine et repérer si certaines reviennent souvent, sans se juger."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -366,8 +717,21 @@
                             "objectives": [
                                 {
                                     "label": "Décrire une émotion",
-                                    "difficulty": 4,
-                                    "duration": 7
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Nommer l’émotion",
+                                            "instruction": "Choisir un moment de la journée où vous avez ressenti quelque chose de fort et nommer l’émotion principale (tristesse, joie, peur, colère...)."
+                                        },
+                                        {
+                                            "label": "Décrire les sensations physiques",
+                                            "instruction": "Pour une émotion récente, décrire les sensations dans le corps (tension, chaleur, respiration) en quelques phrases."
+                                        },
+                                        {
+                                            "label": "Décrire pensées et besoins",
+                                            "instruction": "Pour une émotion marquante de la semaine, écrire ce que vous pensiez à ce moment-là et ce dont vous aviez besoin (soutien, repos, clarté...)."
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -381,8 +745,21 @@
                             "objectives": [
                                 {
                                     "label": "Lire 5 minutes",
-                                    "difficulty": 2,
-                                    "duration": 10
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Choisir un support agréable",
+                                            "instruction": "Choisir un livre, un article long ou un recueil qui vous donne vraiment envie de lire au moins quelques minutes."
+                                        },
+                                        {
+                                            "label": "Lire à heure fixe",
+                                            "instruction": "Bloquer un créneau de 5 minutes dans la journée (par exemple au réveil ou avant de dormir) et le consacrer uniquement à la lecture."
+                                        },
+                                        {
+                                            "label": "Prolonger si envie",
+                                            "instruction": "Lire 5 minutes puis, si vous êtes dedans et disponible, prolonger librement la séance sans obligation de durée."
+                                        }
+                                    ]
                                 }
                             ]
                         },
@@ -391,8 +768,21 @@
                             "objectives": [
                                 {
                                     "label": "Faire un rituel simple",
-                                    "difficulty": 3,
-                                    "duration": 10
+                                    "duration": 3,
+                                    "steps": [
+                                        {
+                                            "label": "Définir un mini-rituel",
+                                            "instruction": "Choisir un enchaînement très simple (par exemple verre d’eau, étirement de 1 minute, respiration de 1 minute) à faire le matin."
+                                        },
+                                        {
+                                            "label": "Appliquer le rituel 3 jours de suite",
+                                            "instruction": "Réaliser le mini-rituel au réveil pendant 3 jours consécutifs, sans viser la perfection, juste la répétition."
+                                        },
+                                        {
+                                            "label": "Ajuster le contenu",
+                                            "instruction": "Garder ce qui vous fait du bien dans le rituel, retirer ce qui ne vous convient pas et noter la version de routine qui vous semble la plus facile à maintenir."
+                                        }
+                                    ]
                                 }
                             ]
                         }

@@ -2,17 +2,13 @@
 
 namespace App\Controller\Api;
 
-use App\Dto\SkillRequestPayload;
-use App\Entity\Branch;
-use App\Entity\Skill;
+use App\Dto\Request\SkillRequestPayload as Payload;
+use App\Entity\{Branch, Skill};
 use App\Repository\SkillRepository;
-use App\ValueResolver\BranchValueResolver;
-use App\ValueResolver\SkillValueResolver;
+use App\ValueResolver\{BranchValueResolver as BranchVR, SkillValueResolver as SkillVR};
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
-use Symfony\Component\HttpKernel\Attribute\ValueResolver;
+use Symfony\Component\HttpFoundation\{JsonResponse, Response};
+use Symfony\Component\HttpKernel\Attribute\{MapRequestPayload as Map, ValueResolver as VR};
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,80 +24,58 @@ class SkillController extends AbstractController
     ) {}
 
     #[Route('', name: "browse", methods: ['GET'])]
-    public function browse(#[ValueResolver(BranchValueResolver::class)] Branch $branch): JsonResponse
+    public function browse(#[VR(BranchVR::class)] Branch $branch): JsonResponse
     {
-        $skills = $branch->getSkills();
-
-        return $this->json(
-            data: $skills,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($branch->getSkills(), Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{skill_id}', name: "read", methods: ['GET'])]
-    public function read(
-        #[ValueResolver(BranchValueResolver::class)] Branch $branch,
-        #[ValueResolver(SkillValueResolver::class)] Skill $skill
-    ): JsonResponse {
+    public function read(#[VR(BranchVR::class)] Branch $branch, #[VR(SkillVR::class)] Skill $skill): JsonResponse
+    {
         if (!$branch->getSkills()->contains($skill)) {
-            throw new NotFoundHttpException('La compétence n\'appartient pas à la branche spécifiée.');
+            throw new NotFoundHttpException(
+                sprintf('["%s"] Skill does not belong to the specified Branch.', self::class)
+            );
         }
 
-        return $this->json(
-            data: $skill,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($skill, Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{skill_id}', name: "edit", methods: ['PATCH', 'PUT'])]
-    public function edit(
-        #[ValueResolver(BranchValueResolver::class)] Branch $branch,
-        #[ValueResolver(SkillValueResolver::class)] Skill $skill,
-        #[MapRequestPayload] SkillRequestPayload $request
-    ): JsonResponse {
+    public function edit(#[VR(BranchVR::class)] Branch $branch, #[VR(SkillVR::class)] Skill $skill, #[Map] Payload $request): JsonResponse
+    {
         if (!$branch->getSkills()->contains($skill)) {
-            throw new NotFoundHttpException('La compétence n\'appartient pas à la branche spécifiée.');
+            throw new NotFoundHttpException(
+                sprintf('["%s"] Skill does not belong to the specified Branch.', self::class)
+            );
         }
 
-        $skill = $this->objectMapper->map($request, $skill);
-        $this->skillRepository->save($skill, true);
+        $this->skillRepository->save($this->objectMapper->map($request, $skill), true);
 
-        return $this->json(
-            data: $skill,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($skill, Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('', name: "add", methods: ['POST'])]
-    public function add(
-        #[ValueResolver(BranchValueResolver::class)] Branch $branch,
-        #[MapRequestPayload] SkillRequestPayload $request
-    ): JsonResponse {
+    public function add(#[VR(BranchVR::class)] Branch $branch, #[Map] Payload $request): JsonResponse
+    {
         $skill = $this->objectMapper->map($request, Skill::class);
         $skill->addBranch($branch);
         $this->skillRepository->save($skill, true);
 
-        return $this->json(
-            data: $skill,
-            status: Response::HTTP_CREATED,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($skill, Response::HTTP_CREATED, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{skill_id}', name: "delete", methods: ['DELETE'])]
-    public function delete(
-        #[ValueResolver(BranchValueResolver::class)] Branch $branch,
-        #[ValueResolver(SkillValueResolver::class)] Skill $skill,
-    ): JsonResponse {
+    public function delete(#[VR(BranchVR::class)] Branch $branch, #[VR(SkillVR::class)] Skill $skill): JsonResponse
+    {
         if (!$branch->getSkills()->contains($skill)) {
-            throw new NotFoundHttpException('La compétence n\'appartient pas à la branche spécifiée.');
+            throw new NotFoundHttpException(
+                sprintf('["%s"] Skill does not belong to the specified Branch.', self::class)
+            );
         }
 
         $this->skillRepository->remove($skill, true);
 
-        return $this->json(data: null, status: Response::HTTP_NO_CONTENT);
+        return $this->json(null, Response::HTTP_NO_CONTENT);
     }
 }

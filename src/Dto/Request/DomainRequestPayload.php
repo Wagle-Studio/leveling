@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\Request;
 
 use App\Entity\Domain;
 use Symfony\Component\ObjectMapper\Attribute\Map;

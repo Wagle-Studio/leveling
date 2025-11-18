@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\DomainRepository;
 use App\Trait\SluggableTrait;
 use App\Trait\TimestampableTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Serializer\Attribute\Ignore;
 
 #[ORM\Entity(repositoryClass: DomainRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -23,26 +26,28 @@ class Objective
 
     #[ORM\Column]
     #[Groups(['objective.read'])]
-    private ?int $difficulty = null;
-
-    #[ORM\Column]
-    #[Groups(['objective.read'])]
     private ?int $duration = null;
 
     #[ORM\ManyToOne(inversedBy: 'objectives')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Ignore]
     private ?Skill $skill = null;
+
+    /**
+     * @var Collection<int, Step>
+     */
+    #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'objective')]
+    #[Ignore]
+    private Collection $steps;
+
+    public function __construct()
+    {
+        $this->steps = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setDifficulty(int $difficulty): static
-    {
-        $this->difficulty = $difficulty;
-
-        return $this;
     }
 
     public function getDuration(): ?int
@@ -69,8 +74,32 @@ class Objective
         return $this;
     }
 
-    public function getDifficulty(): ?int
+    /**
+     * @return Collection<int, Step>
+     */
+    public function getSteps(): Collection
     {
-        return $this->difficulty;
+        return $this->steps;
+    }
+
+    public function addStep(Step $step): static
+    {
+        if (!$this->steps->contains($step)) {
+            $this->steps->add($step);
+            $step->setObjective($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Step $step): static
+    {
+        if ($this->steps->removeElement($step)) {
+            if ($step->getObjective() === $this) {
+                $step->setObjective(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -6,6 +6,7 @@ use App\Factory\BranchFactory;
 use App\Factory\DomainFactory;
 use App\Factory\ObjectiveFactory;
 use App\Factory\SkillFactory;
+use App\Factory\StepFactory;
 use Zenstruck\Foundry\Attribute\AsFixture;
 use Zenstruck\Foundry\Story;
 
@@ -35,12 +36,19 @@ final class DevStory extends Story
                     ]);
 
                     foreach ($skillData['objectives'] as $objectiveData) {
-                        ObjectiveFactory::createOne([
+                        $objective = ObjectiveFactory::createOne([
                             'label' => $objectiveData['label'],
-                            'difficulty' => $objectiveData['difficulty'],
                             'duration' => $objectiveData['duration'],
                             'skill' => $skill,
                         ]);
+
+                        foreach ($objectiveData['steps'] as $stepData) {
+                            StepFactory::createOne([
+                                'label' => $stepData['label'],
+                                'instruction' => $stepData['instruction'],
+                                'objective' => $objective
+                            ]);
+                        }
                     }
                 }
             }

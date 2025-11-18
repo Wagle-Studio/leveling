@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20251116231757 extends AbstractMigration
+final class Version20251118012120 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -34,7 +34,7 @@ final class Version20251116231757 extends AbstractMigration
         $this->addSql('CREATE TABLE domain_branch (domain_id INT NOT NULL, branch_id INT NOT NULL, PRIMARY KEY(domain_id, branch_id))');
         $this->addSql('CREATE INDEX IDX_D4E517D6115F0EE5 ON domain_branch (domain_id)');
         $this->addSql('CREATE INDEX IDX_D4E517D6DCD6CC49 ON domain_branch (branch_id)');
-        $this->addSql('CREATE TABLE objective (id SERIAL NOT NULL, skill_id INT NOT NULL, difficulty INT NOT NULL, duration INT NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, label VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE objective (id SERIAL NOT NULL, skill_id INT NOT NULL, duration INT NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, label VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_B996F101989D9B62 ON objective (slug)');
         $this->addSql('CREATE INDEX IDX_B996F1015585C142 ON objective (skill_id)');
         $this->addSql('COMMENT ON COLUMN objective.created_at IS \'(DC2Type:datetime_immutable)\'');
@@ -43,6 +43,11 @@ final class Version20251116231757 extends AbstractMigration
         $this->addSql('CREATE UNIQUE INDEX UNIQ_5E3DE477989D9B62 ON skill (slug)');
         $this->addSql('COMMENT ON COLUMN skill.created_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('COMMENT ON COLUMN skill.updated_at IS \'(DC2Type:datetime_immutable)\'');
+        $this->addSql('CREATE TABLE step (id SERIAL NOT NULL, objective_id INT NOT NULL, instruction VARCHAR(255) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, label VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_43B9FE3C989D9B62 ON step (slug)');
+        $this->addSql('CREATE INDEX IDX_43B9FE3C73484933 ON step (objective_id)');
+        $this->addSql('COMMENT ON COLUMN step.created_at IS \'(DC2Type:datetime_immutable)\'');
+        $this->addSql('COMMENT ON COLUMN step.updated_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('CREATE TABLE messenger_messages (id BIGSERIAL NOT NULL, body TEXT NOT NULL, headers TEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, available_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, delivered_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_75EA56E0FB7336F0 ON messenger_messages (queue_name)');
         $this->addSql('CREATE INDEX IDX_75EA56E0E3BD61CE ON messenger_messages (available_at)');
@@ -63,6 +68,7 @@ final class Version20251116231757 extends AbstractMigration
         $this->addSql('ALTER TABLE domain_branch ADD CONSTRAINT FK_D4E517D6115F0EE5 FOREIGN KEY (domain_id) REFERENCES domain (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE domain_branch ADD CONSTRAINT FK_D4E517D6DCD6CC49 FOREIGN KEY (branch_id) REFERENCES branch (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE objective ADD CONSTRAINT FK_B996F1015585C142 FOREIGN KEY (skill_id) REFERENCES skill (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE step ADD CONSTRAINT FK_43B9FE3C73484933 FOREIGN KEY (objective_id) REFERENCES objective (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
     }
 
     public function down(Schema $schema): void
@@ -74,12 +80,14 @@ final class Version20251116231757 extends AbstractMigration
         $this->addSql('ALTER TABLE domain_branch DROP CONSTRAINT FK_D4E517D6115F0EE5');
         $this->addSql('ALTER TABLE domain_branch DROP CONSTRAINT FK_D4E517D6DCD6CC49');
         $this->addSql('ALTER TABLE objective DROP CONSTRAINT FK_B996F1015585C142');
+        $this->addSql('ALTER TABLE step DROP CONSTRAINT FK_43B9FE3C73484933');
         $this->addSql('DROP TABLE branch');
         $this->addSql('DROP TABLE branch_skill');
         $this->addSql('DROP TABLE domain');
         $this->addSql('DROP TABLE domain_branch');
         $this->addSql('DROP TABLE objective');
         $this->addSql('DROP TABLE skill');
+        $this->addSql('DROP TABLE step');
         $this->addSql('DROP TABLE messenger_messages');
     }
 }

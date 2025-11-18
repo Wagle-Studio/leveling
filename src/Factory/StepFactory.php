@@ -2,15 +2,15 @@
 
 namespace App\Factory;
 
-use App\Entity\Objective;
+use App\Entity\Step;
 use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
 
-final class ObjectiveFactory extends PersistentObjectFactory
+final class StepFactory extends PersistentObjectFactory
 {
     #[\Override]
     public static function class(): string
     {
-        return Objective::class;
+        return Step::class;
     }
 
     #[\Override]
@@ -18,7 +18,7 @@ final class ObjectiveFactory extends PersistentObjectFactory
     {
         return [
             'label' => self::faker()->text(255),
-            'duration' => self::faker()->numberBetween(1, 30),
+            'instruction' => self::faker()->text(255),
         ];
     }
 
@@ -26,7 +26,7 @@ final class ObjectiveFactory extends PersistentObjectFactory
     protected function initialize(): static
     {
         return $this
-            // ->afterInstantiate(function(Branch $branch): void {})
+            // ->afterInstantiate(function(Domain $domain): void {})
         ;
     }
 }

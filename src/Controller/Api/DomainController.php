@@ -2,16 +2,13 @@
 
 namespace App\Controller\Api;
 
-use App\Dto\DomainRequestPayload;
+use App\Dto\Request\DomainRequestPayload as Payload;
 use App\Entity\Domain;
 use App\Repository\DomainRepository;
-use App\ValueResolver\DomainValueResolver;
-use OpenAI;
+use App\ValueResolver\DomainValueResolver as DomainVR;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
-use Symfony\Component\HttpKernel\Attribute\ValueResolver;
+use Symfony\Component\HttpFoundation\{JsonResponse, Response};
+use Symfony\Component\HttpKernel\Attribute\{MapRequestPayload as Map, ValueResolver as VR};
 use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,76 +22,40 @@ class DomainController extends AbstractController
         private ObjectMapperInterface $objectMapper
     ) {}
 
-    #[Route('/test', name: "test", methods: ['GET'])]
-    public function test(): JsonResponse
-    {
-        $client = OpenAI::client($_ENV['OPENAI_API_KEY']);
-
-        $response = $client->responses()->create([
-            'model' => 'gpt-4o',
-            'input' => 'Hello!',
-        ]);
-
-        return $this->json(
-            data: $response->outputText,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
-    }
-
     #[Route('', name: "browse", methods: ['GET'])]
     public function browse(): JsonResponse
     {
-        return $this->json(
-            data: $this->domainRepository->findAll(),
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($this->domainRepository->findAll(), Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{domain_id}', name: "read", methods: ['GET'])]
-    public function read(#[ValueResolver(DomainValueResolver::class)] Domain $domain): JsonResponse
+    public function read(#[VR(DomainVR::class)] Domain $domain): JsonResponse
     {
-        return $this->json(
-            data: $domain,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($domain, Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{domain_id}', name: "edit", methods: ['PATCH', 'PUT'])]
-    public function edit(
-        #[ValueResolver(DomainValueResolver::class)] Domain $domain,
-        #[MapRequestPayload] DomainRequestPayload $request
-    ): JsonResponse {
-        $domain = $this->objectMapper->map($request, $domain);
-        $this->domainRepository->save($domain, true);
+    public function edit(#[VR(DomainVR::class)] Domain $domain, #[Map] Payload $request): JsonResponse
+    {
+        $this->domainRepository->save($this->objectMapper->map($request, $domain), true);
 
-        return $this->json(
-            data: $domain,
-            status: Response::HTTP_OK,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($domain, Response::HTTP_OK, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('', name: "add", methods: ['POST'])]
-    public function add(#[MapRequestPayload] DomainRequestPayload $request,): JsonResponse
+    public function add(#[Map] Payload $request): JsonResponse
     {
         $domain = $this->objectMapper->map($request, Domain::class);
         $this->domainRepository->save($domain, true);
 
-        return $this->json(
-            data: $domain,
-            status: Response::HTTP_CREATED,
-            context: ['groups' => self::SERIALIZATION_GROUPS]
-        );
+        return $this->json($domain, Response::HTTP_CREATED, ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{domain_id}', name: "delete", methods: ['DELETE'])]
-    public function delete(#[ValueResolver(DomainValueResolver::class)] Domain $domain): JsonResponse
+    public function delete(#[VR(DomainVR::class)] Domain $domain): JsonResponse
     {
         $this->domainRepository->remove($domain, true);
 
-        return $this->json(data: null, status: Response::HTTP_NO_CONTENT);
+        return $this->json(null, Response::HTTP_NO_CONTENT);
     }
 }

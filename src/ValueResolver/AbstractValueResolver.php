@@ -41,17 +41,23 @@ abstract class AbstractValueResolver implements ValueResolverInterface
         $entityIdentifier = $this->getEntityIdentifier($request);
 
         if (!$entityIdentifier) {
-            throw new BadRequestHttpException("{$this->entityShortName} {$this->entityField} is required");
+            throw new BadRequestHttpException(
+                sprintf('["%s"] %s %s is required.', self::class, $this->entityShortName, $this->entityField)
+            );
         }
 
         if (!($this->validateFieldFn)($entityIdentifier)) {
-            throw new BadRequestHttpException("{$this->entityShortName} {$this->entityField} is invalid");
+            throw new BadRequestHttpException(
+                sprintf('["%s"] %s %s is invalid.', self::class, $this->entityShortName, $this->entityField)
+            );
         }
 
         $entity = $this->entityRepository->findOneBy([$this->entityField => $entityIdentifier]);
 
         if (!$entity) {
-            throw new NotFoundHttpException("{$this->entityShortName} not found");
+            throw new NotFoundHttpException(
+                sprintf('["%s"] %s not found.', self::class, $this->entityShortName)
+            );
         }
 
         return [$entity];
