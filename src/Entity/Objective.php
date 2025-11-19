@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\DomainRepository;
+use App\Repository\ObjectiveRepository;
 use App\Trait\SluggableTrait;
 use App\Trait\TimestampableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\Ignore;
 
-#[ORM\Entity(repositoryClass: DomainRepository::class)]
+#[ORM\Entity(repositoryClass: ObjectiveRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 class Objective
 {

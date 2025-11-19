@@ -3,14 +3,14 @@
 namespace App\Controller\Api;
 
 use App\Entity\{Objective, Step};
-use App\Repository\StepRepository;
-use App\Service\Ai\{Agent\OpenAiAgent, Factory\ContextFactory, Factory\PayloadFactory, Factory\PromptFactory, PromptTypes};
+use App\Libs\Queue\Payload\BuildObjectiveStepsPayload;
+use App\Libs\Queue\QueueManagerInterface;
+use App\Libs\Queue\QueueJobEnum;
 use App\ValueResolver\{ObjectiveValueResolver as ObjectiveVR, StepValueResolver as StepVR};
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{JsonResponse, Response};
 use Symfony\Component\HttpKernel\Attribute\ValueResolver as VR;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/api/objectives/{objective_id}/steps', name: 'api.objectives.steps.')]
@@ -19,30 +19,14 @@ class StepController extends AbstractController
     private const SERIALIZATION_GROUPS = ['common.read', 'step.read'];
 
     #[Route('/generate', name: "generate", methods: ['GET'])]
-    public function generate(
-        #[VR(ObjectiveVR::class)] Objective $objective,
-        OpenAiAgent $openAi,
-        ContextFactory $contextFactory,
-        PromptFactory $promptFactory,
-        PayloadFactory $payloadFactory,
-        ObjectMapperInterface $objectMapper,
-        StepRepository $stepRepository
-    ): JsonResponse {
-        $context = $contextFactory->handle(PromptTypes::StepsGenerate, $objective);
-        $prompt = $promptFactory->handle(PromptTypes::StepsGenerate, $context);
-        $result = $openAi->send($prompt);
-        $payload = $payloadFactory->handle(PromptTypes::StepsGenerate, $result);
+    public function generate(#[VR(ObjectiveVR::class)] Objective $objective, QueueManagerInterface $queueManager): JsonResponse
+    {
+        $dto = new BuildObjectiveStepsPayload();
+        $dto->objective_id = $objective->getId();
 
-        $steps = [];
+        $queueManager->enqueueJob(QueueJobEnum::buildObjectiveSteps, $dto);
 
-        foreach ($payload->getPayload()->steps as $payloadStep) {
-            $step = $objectMapper->map($payloadStep, Step::class);
-            $steps[] = $step->setObjective($objective);
-        }
-
-        $stepRepository->saveAll($steps, true);
-
-        return $this->json($steps, Response::HTTP_OK, context: ['groups' => self::SERIALIZATION_GROUPS]);
+        return $this->json([], Response::HTTP_OK, context: ['groups' => self::SERIALIZATION_GROUPS]);
     }
 
     #[Route('/{step_id}', name: "read", methods: ['GET'])]
