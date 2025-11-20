@@ -24,7 +24,7 @@ services:
     depends_on:
       - app
 
-  queue-worker:
+  messenger-worker:
     build:
       context: .
       dockerfile: Dockerfile
@@ -35,11 +35,11 @@ services:
       APP_ENV: ${APP_ENV}
       APP_SECRET: ${APP_SECRET}
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}?serverVersion=${POSTGRES_VERSION}&charset=utf8
+      MESSENGER_TRANSPORT_DSN: ${MESSENGER_TRANSPORT_DSN}
     depends_on:
       database:
         condition: service_healthy
-    command: ["php", "bin/console", "app:queue:work"]
-    restart: unless-stopped
+    command: ["php", "bin/console", "messenger:consume", "async", "-vv"]
 ###< symfony/application ###
 
 ###> doctrine/doctrine-bundle ###

@@ -2,9 +2,10 @@
 
 namespace App\Libs\Queue;
 
-use App\Domain\ProgressionEngine\Scenario\PortalBuild\ProgressionScenarioEnums;
+use App\Libs\Domain\ProgressionEngine\ProgressionScenarioEnums;
 
 enum QueueJobEnum: string
 {
-    case SCENARIO_PORTAL_BUILD = ProgressionScenarioEnums::SCENARIO_PORTAL_BUILD->value;
+    case SCENARIO_PORTAL_OPEN = ProgressionScenarioEnums::SCENARIO_PORTAL_OPEN->value;
+    case SCENARIO_QUEST_OPEN = ProgressionScenarioEnums::SCENARIO_QUEST_OPEN->value;
 }

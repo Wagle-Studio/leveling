@@ -10,8 +10,8 @@ framework:
                     use_notify: true
                     check_delayed_interval: 60000
                 retry_strategy:
-                    max_retries: 3
-                    multiplier: 2
+                    max_retries: 0 # Custom retry logic handled in QueueJob entity
+
             failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
@@ -25,5 +25,5 @@ framework:
             Symfony\Component\Notifier\Message\ChatMessage: async
             Symfony\Component\Notifier\Message\SmsMessage: async
 
-            # Route your messages to the transports
-            # 'App\Message\YourMessage': async
+            # Route queue job messages to async transport for parallel processing
+            'App\Messenger\Message\ProcessQueueJobMessage': async

@@ -16,5 +16,9 @@ services:
     App\:
         resource: '../src/'
 
+    # AI Provider configuration - use OpenAI by default
+    App\Libs\Ai\AiProviderInterface:
+        alias: App\Libs\Ai\Agent\OpenAiAgent
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

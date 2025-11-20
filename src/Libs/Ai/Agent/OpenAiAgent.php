@@ -2,11 +2,11 @@
 
 namespace App\Libs\Ai\Agent;
 
-use App\Libs\Conversation\Prompt\PromptInterface;
+use App\Libs\Ai\AiProviderInterface;
 use OpenAI;
 use OpenAI\Client;
 
-class OpenAiAgent
+class OpenAiAgent implements AiProviderInterface
 {
     private readonly Client $client;
 
@@ -15,18 +15,23 @@ class OpenAiAgent
         $this->client = OpenAI::client($_ENV['OPENAI_API_KEY']);
     }
 
-    public function send(PromptInterface $prompt): object
+    public function getName(): string
+    {
+        return 'OpenAI';
+    }
+
+    public function send(string $systemInstruction, string $userInstruction): object
     {
         $response = $this->client->chat()->create([
             'model' => 'gpt-5-mini',
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => $prompt->getSystemInstructions()
+                    'content' => $systemInstruction
                 ],
                 [
                     'role' => 'user',
-                    'content' => $prompt->getUserInstructions()
+                    'content' => $userInstruction
                 ]
             ],
             'response_format' => [

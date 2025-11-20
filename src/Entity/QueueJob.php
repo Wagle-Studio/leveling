@@ -40,6 +40,13 @@ class QueueJob
     #[Groups(['queue_job.read'])]
     private ?string $errorMessage = null;
 
+    #[ORM\Column(type: 'integer', options: ['default' => 0])]
+    #[Groups(['queue_job.read'])]
+    private int $attempts = 0;
+
+    #[ORM\Column(type: 'integer', options: ['default' => 3])]
+    private int $maxRetries = 3;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,9 +81,9 @@ class QueueJob
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(QueueJobStatusEnum $status): static
     {
-        $this->status = $status;
+        $this->status = $status->value;
 
         return $this;
     }
@@ -103,5 +110,34 @@ class QueueJob
         $this->errorMessage = $errorMessage;
 
         return $this;
+    }
+
+    public function getAttempts(): int
+    {
+        return $this->attempts;
+    }
+
+    public function incrementAttempts(): static
+    {
+        $this->attempts++;
+
+        return $this;
+    }
+
+    public function getMaxRetries(): int
+    {
+        return $this->maxRetries;
+    }
+
+    public function setMaxRetries(int $maxRetries): static
+    {
+        $this->maxRetries = $maxRetries;
+
+        return $this;
+    }
+
+    public function canRetry(): bool
+    {
+        return $this->attempts < $this->maxRetries;
     }
 }
