@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Libs\Conversation\Context;
+namespace App\Domain\ProgressionEngine\Scenario\PortalBuild;
 
 use App\Entity\Objective;
 
-final class BuildObjectiveStepsContext implements ContextInterface
+final class PortalOpenConvContext
 {
     private Objective $objective;
 

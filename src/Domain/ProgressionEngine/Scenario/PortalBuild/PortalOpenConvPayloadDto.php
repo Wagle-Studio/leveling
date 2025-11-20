@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Libs\Conversation\Payload\Dto;
+namespace App\Domain\ProgressionEngine\Scenario\PortalBuild;
 
 use App\Entity\Step;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\ObjectMapper\Attribute\Map;
 
-final class BuildObjectiveStepsDto implements PayloadDtoInterface
+final class PortalOpenConvPayloadDto
 {
     /** @var StepItemDto[] */
     #[Assert\NotBlank]
@@ -23,7 +23,7 @@ final class BuildObjectiveStepsDto implements PayloadDtoInterface
 }
 
 #[Map(target: Step::class)]
-final class StepItemDto implements PayloadDtoInterface
+final class StepItemDto
 {
     #[Assert\NotBlank]
     #[Assert\Length(max: 80)]

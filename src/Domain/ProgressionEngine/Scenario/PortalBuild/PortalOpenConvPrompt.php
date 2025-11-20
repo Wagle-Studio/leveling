@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Libs\Conversation\Prompt;
+namespace App\Domain\ProgressionEngine\Scenario\PortalBuild;
 
 use App\Libs\Conversation\Context\ContextInterface;
 use App\Libs\Conversation\Context\BuildObjectiveStepsContext;
 
-final class BuildObjectiveStepsPrompt implements PromptInterface
+final class PortalOpenConvPrompt
 {
     private string $systemInstruction;
     private string $userInstruction;

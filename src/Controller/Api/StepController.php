@@ -2,8 +2,8 @@
 
 namespace App\Controller\Api;
 
+use App\Domain\ProgressionEngine\Scenario\PortalBuild\PortalOpenQueuePayloadDto;
 use App\Entity\{Objective, Step};
-use App\Libs\Queue\Payload\BuildObjectiveStepsPayload;
 use App\Libs\Queue\QueueManagerInterface;
 use App\Libs\Queue\QueueJobEnum;
 use App\ValueResolver\{ObjectiveValueResolver as ObjectiveVR, StepValueResolver as StepVR};
@@ -21,10 +21,10 @@ class StepController extends AbstractController
     #[Route('/generate', name: "generate", methods: ['GET'])]
     public function generate(#[VR(ObjectiveVR::class)] Objective $objective, QueueManagerInterface $queueManager): JsonResponse
     {
-        $dto = new BuildObjectiveStepsPayload();
+        $dto = new PortalOpenQueuePayloadDto();
         $dto->objective_id = $objective->getId();
 
-        $queueManager->enqueueJob(QueueJobEnum::buildObjectiveSteps, $dto);
+        $queueManager->enqueueJob(QueueJobEnum::SCENARIO_PORTAL_BUILD, $dto);
 
         return $this->json([], Response::HTTP_OK, context: ['groups' => self::SERIALIZATION_GROUPS]);
     }

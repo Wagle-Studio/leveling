@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Libs\Queue;
+namespace App\Libs\Conversation;
 
 use App\Domain\ProgressionEngine\Scenario\PortalBuild\ProgressionScenarioEnums;
 
-enum QueueJobEnum: string
+enum ConversationEnum: string
 {
     case SCENARIO_PORTAL_BUILD = ProgressionScenarioEnums::SCENARIO_PORTAL_BUILD->value;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Libs\Queue\Payload;
+namespace App\Libs\Queue;
 
 interface QueuePayloadInterface
 {

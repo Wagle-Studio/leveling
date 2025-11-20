@@ -1,30 +1,28 @@
 <?php
 
-namespace App\Libs\Queue\Process;
+namespace App\Domain\ProgressionEngine\Scenario\PortalBuild;
 
+use App\Domain\Core\Interface\ScenarioInterface;
 use App\Entity\Step;
 use App\Libs\Conversation\ConversationManagerInterface;
-use App\Libs\Conversation\Payload\Dto\BuildObjectiveStepsDto;
-use App\Libs\Queue\Payload\BuildObjectiveStepsPayload;
-use App\Libs\Queue\Payload\QueuePayloadInterface;
 use App\Repository\ObjectiveRepository;
 use App\Repository\StepRepository;
 use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 
-final class BuildObjectiveStepsProcess implements QueueProcessInterface
+final class PortalOpenScenario implements ScenarioInterface
 {
     public function __construct(
-        private ObjectMapperInterface $objectMapper,
-        private ObjectiveRepository $objectiveRepository,
-        private StepRepository $stepRepository,
-        private ConversationManagerInterface $conversationManager,
+        protected StepRepository $stepRepository,
+        protected ObjectMapperInterface $objectMapper,
+        protected ObjectiveRepository $objectiveRepository,
+        protected ConversationManagerInterface $conversationManager,
     ) {}
 
-    public function process(QueuePayloadInterface $payload): void
+    public function run(object $payload): void
     {
-        if (!$payload instanceof BuildObjectiveStepsPayload) {
+        if (!$payload instanceof PortalOpenQueuePayloadDto) {
             throw new \InvalidArgumentException(
-                sprintf('["%s"] needs an instance of "%s". Received: "%s".', self::class, BuildObjectiveStepsPayload::class, get_class($payload))
+                sprintf('["%s"] needs an instance of "%s". Received: "%s".', self::class, PortalOpenQueuePayloadDto::class, get_class($payload))
             );
         }
 
@@ -38,9 +36,9 @@ final class BuildObjectiveStepsProcess implements QueueProcessInterface
 
         $payloadData = $payload->getData();
 
-        if (!$payloadData instanceof BuildObjectiveStepsDto) {
+        if (!$payloadData instanceof PortalOpenConvPayloadDto) {
             throw new \InvalidArgumentException(
-                sprintf('["%s"] expects payload of type "%s", "%s" given.', self::class, BuildObjectiveStepsDto::class, get_class($payloadData))
+                sprintf('["%s"] expects payload of type "%s", "%s" given.', self::class, PortalOpenConvPayloadDto::class, get_class($payloadData))
             );
         }
 

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Libs\Queue\Payload;
+namespace App\Domain\ProgressionEngine\Scenario\PortalBuild;
 
+use App\Libs\Queue\QueuePayloadInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-final class BuildObjectiveStepsPayload implements QueuePayloadInterface
+final class PortalOpenQueuePayloadDto implements QueuePayloadInterface
 {
     #[Assert\Positive]
     public int $objective_id;

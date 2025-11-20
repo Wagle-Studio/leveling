@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Libs\Conversation\Payload;
+namespace App\Domain\ProgressionEngine\Scenario\PortalBuild;
 
-use App\Libs\Conversation\Payload\Dto\{BuildObjectiveStepsDto, StepItemDto};
 use Symfony\Component\ObjectMapper\ObjectMapperInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-final class BuildObjectiveStepsPayload implements PayloadInterface
+final class PortalOpenConvPayload
 {
-    private BuildObjectiveStepsDto $payload;
+    private PortalOpenConvPayloadDto $payload;
 
     public function __construct(
         private ObjectMapperInterface $objectMapper,
@@ -18,7 +17,7 @@ final class BuildObjectiveStepsPayload implements PayloadInterface
     public function initialize(object $result): void
     {
         $mappedSteps = [];
-        $mappedStepGenerate = $this->objectMapper->map($result, BuildObjectiveStepsDto::class);
+        $mappedStepGenerate = $this->objectMapper->map($result, PortalOpenConvPayloadDto::class);
 
         foreach ($mappedStepGenerate->steps as $stepData) {
             $mappedSteps[] = $this->objectMapper->map($stepData, StepItemDto::class);
@@ -35,7 +34,7 @@ final class BuildObjectiveStepsPayload implements PayloadInterface
         $this->payload = $mappedStepGenerate;
     }
 
-    public function getData(): BuildObjectiveStepsDto
+    public function getData(): PortalOpenConvPayloadDto
     {
         return $this->payload;
     }
