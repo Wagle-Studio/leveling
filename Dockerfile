@@ -1,5 +1,5 @@
 # Dockerfile pour Symfony
-FROM php:8.4-fpm-alpine
+FROM php:8.3-fpm-alpine
 
 # Installation des dépendances système
 RUN apk add --no-cache \

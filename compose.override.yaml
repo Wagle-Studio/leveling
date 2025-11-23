@@ -1,21 +1,29 @@
 services:
-###> symfony/application ###
+  ###> symfony/application ###
   app:
     ports:
       - "9000:9000"
+    restart: always
+  messenger-worker:
+    restart: always
 
+  ###< symfony/application ###
+
+  ###> symfony/nginx ###
   nginx:
     ports:
       - "8000:80"
-###< symfony/application ###
+    restart: always
+  ###< symfony/nginx ###
 
-###> doctrine/doctrine-bundle ###
+  ###> symfony/doctrine ###
   database:
     ports:
       - "5432:5432"
-###< doctrine/doctrine-bundle ###
+    restart: always
+  ###< symfony/doctrine ###
 
-###> symfony/mailer ###
+  ###> symfony/mailer ###
   mailer:
     image: axllent/mailpit
     ports:
@@ -24,14 +32,16 @@ services:
     environment:
       MP_SMTP_AUTH_ACCEPT_ANY: 1
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
-###< symfony/mailer ###
+    restart: always
+  ###< symfony/mailer ###
 
-###> adminer ###
+  ###> adminer ###
   adminer:
     image: adminer
     ports:
       - "8080:8080"
     depends_on:
       - database
+    restart: always
 ###< adminer ###
 

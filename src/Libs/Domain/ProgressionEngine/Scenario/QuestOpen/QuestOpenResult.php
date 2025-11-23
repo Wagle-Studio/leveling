@@ -7,10 +7,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class QuestOpenResult
 {
     public function __construct(
-        public readonly ?string $id,
-
-        public readonly ?string $step_id,
-
         #[Assert\NotBlank]
         #[Assert\Length(max: 80)]
         public readonly string $before_label,

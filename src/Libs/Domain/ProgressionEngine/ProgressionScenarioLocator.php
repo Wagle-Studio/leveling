@@ -5,6 +5,7 @@ namespace App\Libs\Domain\ProgressionEngine;
 use App\Libs\Domain\Core\Interface\ServiceLocatorInterface;
 use App\Libs\Domain\ProgressionEngine\Scenario\PortalOpen\PortalOpenScenario;
 use App\Libs\Domain\ProgressionEngine\Scenario\QuestOpen\QuestOpenScenario;
+use App\Libs\Domain\ProgressionEngine\Scenario\SkillDiscover\SkillDiscoverScenario;
 use App\Entity\QueueJob;
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
@@ -21,8 +22,8 @@ final class ProgressionScenarioLocator implements ServiceLocatorInterface, Servi
     public static function getSubscribedServices(): array
     {
         return [
-            ProgressionScenarioEnums::SCENARIO_PORTAL_OPEN->value => PortalOpenScenario::class,
-            ProgressionScenarioEnums::SCENARIO_QUEST_OPEN->value => QuestOpenScenario::class,
+            ProgressionScenarioEnum::SCENARIO_PORTAL_OPEN->value => PortalOpenScenario::class,
+            ProgressionScenarioEnum::SCENARIO_QUEST_OPEN->value => QuestOpenScenario::class,
         ];
     }
 

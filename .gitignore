@@ -1,3 +1,6 @@
+###> docker ###
+/docker/nginx/*.log
+###< docker ###
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -5,16 +8,17 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
+/public/assets/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
 /phpunit.xml
-/.phpunit.cache/
+.phpunit.result.cache
 ###< phpunit/phpunit ###
 
-###> symfony/asset-mapper ###
-/public/assets/
-/assets/vendor/
-###< symfony/asset-mapper ###
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

@@ -21,7 +21,7 @@ final class QuestOpenScenario implements ScenarioInterface
         private readonly AiProviderInterface $aiAgent,
     ) {}
 
-    public function run(object $payload): void
+    public function run(object $payload): mixed
     {
         /** @var QuestOpenPayload $payload */
         $payload = $this->objectMapper->map($payload, QuestOpenPayload::class);
@@ -79,5 +79,7 @@ final class QuestOpenScenario implements ScenarioInterface
         }
 
         $this->questRepository->save($quest);
+
+        return null;
     }
 }

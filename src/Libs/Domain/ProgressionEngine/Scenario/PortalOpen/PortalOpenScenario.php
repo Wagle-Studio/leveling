@@ -22,7 +22,7 @@ final class PortalOpenScenario implements ScenarioInterface
         private readonly AiProviderInterface $aiAgent,
     ) {}
 
-    public function run(object $payload): void
+    public function run(object $payload): mixed
     {
         /** @var PortalOpenPayload $payload */
         $payload = $this->objectMapper->map($payload, PortalOpenPayload::class);
@@ -62,7 +62,7 @@ final class PortalOpenScenario implements ScenarioInterface
         }
 
         $expectedSteps = $objective->getDuration();
-        $actualSteps = count($resultPayload->getSteps());
+        $actualSteps = count($resultPayload->steps);
 
         if ($actualSteps !== $expectedSteps) {
             throw new \InvalidArgumentException(
@@ -72,7 +72,7 @@ final class PortalOpenScenario implements ScenarioInterface
 
         $steps = [];
 
-        foreach ($resultPayload->getSteps() as $payloadStep) {
+        foreach ($resultPayload->steps as $payloadStep) {
             /** @var StepDto $rawStep */
             $rawStep = $this->objectMapper->map($payloadStep, StepDto::class);
 
@@ -100,5 +100,7 @@ final class PortalOpenScenario implements ScenarioInterface
         }
 
         $this->stepRepository->saveAll($steps, true);
+
+        return null;
     }
 }

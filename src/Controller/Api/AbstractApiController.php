@@ -9,6 +9,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 abstract class AbstractApiController extends AbstractController
 {
+    protected function getDiscordUserId(): string
+    {
+        $request = $this->container->get('request_stack')->getCurrentRequest();
+        return $request->attributes->get('discord_user_id');
+    }
+
     protected function jsonResponse(mixed $data, int $status = Response::HTTP_OK, array $groups = []): JsonResponse
     {
         return $this->json($data, $status, context: ['groups' => $groups]);

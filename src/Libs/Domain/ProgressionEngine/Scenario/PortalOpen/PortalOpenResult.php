@@ -11,9 +11,4 @@ final class PortalOpenResult
         #[Assert\Valid]
         public readonly array $steps = [],
     ) {}
-
-    public function getSteps(): array
-    {
-        return $this->steps;
-    }
 }
